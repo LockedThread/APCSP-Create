@@ -17,13 +17,13 @@ void main(List<String> arguments) {
       print('Weather for ${location.locality}, ${location.adminArea}:'
           '\nSummary: ${weather.summary}'
           '\nTemperature: ${weather.temperature}F'
-          '\nCloud Coverage: ${weather.cloudCover * 100.0}%'
-          '\nNearest Storm: ${weather.nearestStormDistance} miles ${weather.nearestStormBearing} degrees ${getCardinalDirectionFromBearing(weather.nearestStormBearing)}'
+          '\nCloud Coverage: ${(weather.cloudCover * 100.0).ceilToDouble()}%'
+          '${weather.nearestStormDistance != null ? '\nNearest Storm: ${weather.nearestStormDistance} miles ${weather.nearestStormBearing != null ? 'degrees ${getCardinalDirectionFromBearing(weather.nearestStormBearing)}' : ''}' : ''}'
           '\nPrecipitation Probability: ${weather.precipProbability * 100.0}%'
           '\nWind Speed: ${weather.windSpeed}mph'
           '\nWind Gusts: ${weather.windGust}mph'
           '\nHumidity: ${weather.humidity * 100.0}%'
-          '\nDew Point: ${weather.dewPoint}F');
+          '\nDew Point: ${weather.dewPoint}F\n');
 
       if (value['alerts'] != null) {
         var alerts = value['alerts'].map((e) => Alert.fromMap(e));
@@ -32,7 +32,7 @@ void main(List<String> arguments) {
           for (Alert v in alerts) {
             print('Title: ${v.title}'
                 '\nDescription: ${v.description}'
-                '\nRegions Effected: ${v.regionsEffected.join(", ")}');
+                'Regions Effected: ${v.regionsEffected.join(", ")}');
           }
         } else {
           print(

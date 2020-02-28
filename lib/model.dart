@@ -27,7 +27,9 @@ class Weather {
 
   Weather.fromMap(Map map)
       : nearestStormDistance = map['nearestStormDistance'],
-        nearestStormBearing = map['nearestStormBearing'].toDouble(),
+        nearestStormBearing = map['nearestStormBearing'] != null
+            ? map['nearestStormBearing'].toDouble()
+            : null,
         precipProbability = map['precipProbability'].toDouble(),
         temperature = map['temperature'].toDouble(),
         humidity = map['humidity'],
