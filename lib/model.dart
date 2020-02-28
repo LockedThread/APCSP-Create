@@ -32,11 +32,11 @@ class Weather {
             : null,
         precipProbability = map['precipProbability'].toDouble(),
         temperature = map['temperature'].toDouble(),
-        humidity = map['humidity'],
-        dewPoint = map['dewPoint'],
+        humidity = map['humidity'].toDouble(),
+        dewPoint = map['dewPoint'].toDouble(),
         windSpeed = map['windSpeed'].toDouble(),
-        windGust = map['windGust'],
-        cloudCover = map['cloudCover'],
+        windGust = map['windGust'].toDouble(),
+        cloudCover = map['cloudCover'].toDouble(),
         summary = map['summary'];
 
   @override
