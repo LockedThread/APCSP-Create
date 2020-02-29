@@ -47,27 +47,23 @@ class Weather {
 
 @immutable
 class Coordinates {
-  /// The geographic coordinate that specifies the north–south position of a point on the Earth's surface.
-  final double latitude;
-
-  /// The geographic coordinate that specifies the east-west position of a point on the Earth's surface.
-  final double longitude;
+  final double latitude, longitude;
 
   Coordinates(this.latitude, this.longitude);
 
-  /// Creates coordinates from a map containing its properties.
   Coordinates.fromMap(Map map)
       : latitude = map['latitude'],
         longitude = map['longitude'];
 
-  /// Creates a map from the coordinates properties.
   Map toMap() => {
         'latitude': latitude,
         'longitude': longitude,
       };
 
   @override
-  String toString() => '{$latitude,$longitude}';
+  String toString() {
+    return 'Coordinates{latitude: $latitude, longitude: $longitude}';
+  }
 
   @override
   bool operator ==(Object other) =>
@@ -110,7 +106,6 @@ class Address {
       this.thoroughfare,
       this.subThoroughfare});
 
-  /// Creates an address from a map containing its properties.
   Address.fromMap(Map map)
       : coordinates = Coordinates.fromMap(map['coordinates']),
         addressLine = map['addressLine'],
@@ -125,7 +120,6 @@ class Address {
         thoroughfare = map['thoroughfare'],
         subThoroughfare = map['subThoroughfare'];
 
-  /// Creates a map from the address properties.
   Map toMap() => {
         'coordinates': coordinates.toMap(),
         'addressLine': addressLine,
@@ -192,4 +186,26 @@ class Alert {
         severity = map['severity'],
         description = map['description'],
         regionsEffected = map['regions'].cast<String>();
+
+  @override
+  String toString() {
+    return 'Alert{title: $title, severity: $severity, description: $description, regionsEffected: $regionsEffected}';
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+          other is Alert &&
+              runtimeType == other.runtimeType &&
+              title == other.title &&
+              severity == other.severity &&
+              description == other.description &&
+              regionsEffected == other.regionsEffected;
+
+  @override
+  int get hashCode =>
+      title.hashCode ^
+      severity.hashCode ^
+      description.hashCode ^
+      regionsEffected.hashCode;
 }
