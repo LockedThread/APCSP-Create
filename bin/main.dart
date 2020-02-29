@@ -6,6 +6,11 @@ void main(List<String> arguments) {
   var parser = ArgParser()..addOption('query', abbr: 'q');
   var argResults = parser.parse(arguments);
 
+  if (argResults['query'] == null) {
+    print('Incorrect Syntax: Use -q "{location}".');
+    return;
+  }
+
   var location = makeGeocodePost(argResults['query']);
 
   location.then((location) {
