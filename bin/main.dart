@@ -19,7 +19,27 @@ void main(List<String> arguments) {
         'https://api.darksky.net/forecast/136bc35fd405f21ccb53f219af72db74/${coordinates.latitude},${coordinates.longitude}');
     response.then((value) {
       var weather = Weather.fromMap(value['currently']);
-      print('Weather for ${location.locality}, ${location.adminArea}:'
+
+      var locName;
+      if (location.locality != null) {
+        locName = location.locality;
+      }
+      if (location.adminArea != null) {
+        if (locName != null) {
+          locName += ', ${location.adminArea}';
+        } else {
+          locName = location.adminArea;
+        }
+      }
+      if (location.countryName != null) {
+        if (locName != null) {
+          locName += ', ${location.countryName}';
+        } else {
+          locName = location.countryName;
+        }
+      }
+
+      print('Weather for ${locName}:'
           '\nSummary: ${weather.summary}'
           '\nTemperature: ${weather.temperature}F'
           '\nCloud Coverage: ${(weather.cloudCover * 100.0).ceilToDouble()}%'
