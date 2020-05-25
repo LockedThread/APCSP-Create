@@ -43,6 +43,35 @@ class Weather {
   String toString() {
     return 'Weather{temperature: $temperature, humidity: $humidity, precipProbability: $precipProbability, nearestStormBearing: $nearestStormBearing, dewPoint: $dewPoint, windSpeed: $windSpeed, windGust: $windGust, cloudCover: $cloudCover, nearestStormDistance: $nearestStormDistance, summary: $summary}';
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+          other is Weather &&
+              runtimeType == other.runtimeType &&
+              temperature == other.temperature &&
+              humidity == other.humidity &&
+              precipProbability == other.precipProbability &&
+              nearestStormBearing == other.nearestStormBearing &&
+              dewPoint == other.dewPoint &&
+              windSpeed == other.windSpeed &&
+              windGust == other.windGust &&
+              cloudCover == other.cloudCover &&
+              nearestStormDistance == other.nearestStormDistance &&
+              summary == other.summary;
+
+  @override
+  int get hashCode =>
+      temperature.hashCode ^
+      humidity.hashCode ^
+      precipProbability.hashCode ^
+      nearestStormBearing.hashCode ^
+      dewPoint.hashCode ^
+      windSpeed.hashCode ^
+      windGust.hashCode ^
+      cloudCover.hashCode ^
+      nearestStormDistance.hashCode ^
+      summary.hashCode;
 }
 
 @immutable
